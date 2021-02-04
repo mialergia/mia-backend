@@ -1,0 +1,11 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name%}Bienvenido a {{ site_name }}!
+
+Estás recibiendo este correo electrónico porque se creó una cuenta con el mail {{ user_display }}
+
+Para confirmar que esto es correcto, clickea desde el celular en el siguiente link: 
+{{ activate_url }}
+
+Gracias!
+
+{% endblocktrans %}
+{% endautoescape %}

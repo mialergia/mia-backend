@@ -1,0 +1,50 @@
+[  
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 1,
+        "fields": {
+            "pregunta": "¿Hoy le molestó su nariz?",
+            "tipo_respuesta": 2
+        }
+    },
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 2,
+        "fields": {
+            "pregunta": "¿Hoy le molestan los ojos?",
+            "tipo_respuesta": 2
+        }
+    },
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 3,
+        "fields": {
+            "pregunta": "¿Hoy tuvo síntomas de tos, falta de aire o silbidos?",
+            "tipo_respuesta": 2
+        }
+    },
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 4,
+        "fields": {
+            "pregunta": "¿Hoy se despertó en la noche?",
+            "tipo_respuesta": 2
+        }
+    },
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 5,
+        "fields": {
+            "pregunta": "¿Faltó al trabajo o a sus estudios?",
+            "tipo_respuesta": 1
+        }
+    },
+    {
+        "model": "symptoms.Pregunta",
+        "pk": 6,
+        "fields": {
+            "pregunta": "¿Está utilizando los medicamentos indicados?",
+            "tipo_respuesta": 1
+        }
+    }
+]

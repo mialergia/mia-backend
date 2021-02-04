@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/alergias-django
+    docker:
+      - image: circleci/python:3.7.5
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+      - image: mdillon/postgis:9.5
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: alergias_develop
+    steps:
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            pip install pipenv
+            pipenv install
+            sudo apt update
+            sudo apt install -y gdal-bin
+            pipenv sync --dev
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+      - run:
+          command: |
+            pipenv run coverage run --omit=.venv/* --source="." manage.py test
+            pipenv run coverage report --omit=.venv/*,manage.py --fail-under=75
+      - run:
+          command: |
+            pipenv run flake8 --count --exclude=.git,*migrations*,*venv/* --max-line-length=119

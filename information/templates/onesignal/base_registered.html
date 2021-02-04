@@ -1,0 +1,21 @@
+<head>
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  
+    <script>
+      var OneSignal = window.OneSignal || [];
+    
+        // Register the client in onesignal
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: '{{onesignal_app_id}}',
+            notifyButton: { enable: true },
+            allowLocalhostAsSecureOrigin: true,
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>Register client</h2>
+  </body>
+  

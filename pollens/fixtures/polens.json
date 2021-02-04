@@ -1,0 +1,194 @@
+[  
+    {
+        "model": "pollens.Polen",
+        "pk": 1,
+        "fields": {
+            "nombre_comun": "Cipreses y afines",
+            "grupo_polinico": "a",
+            "nivel_alto": 8,
+            "nivel_medio": 3,
+            "picks_presente": true,
+            "nombre_alergia": "Cipreses y afines"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 2,
+        "fields": {
+            "nombre_comun": "Fresno",
+            "grupo_polinico": "a",
+            "nivel_alto": 90,
+            "nivel_medio": 16,
+            "picks_presente": true,
+            "nombre_alergia": "Fresno"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 3,
+        "fields": {
+            "nombre_comun": "Olivo",
+            "grupo_polinico": "a",
+            "nivel_alto": 200,
+            "nivel_medio": 51,
+            "picks_presente": true,
+            "nombre_alergia": "Olivo"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 4,
+        "fields": {
+            "nombre_comun": "Plátano",
+            "grupo_polinico": "a",
+            "nivel_alto": 32,
+            "nivel_medio": 7,
+            "picks_presente": true,
+            "nombre_alergia": "Plátano"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 5,
+        "fields": {
+            "nombre_comun": "Eucalipto",
+            "grupo_polinico": "a",
+            "nivel_alto": 30,
+            "nivel_medio": 1,
+            "picks_presente": true,
+            "nombre_alergia": "Eucalipto"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 6,
+        "fields": {
+            "nombre_comun": "Alternaria",
+            "grupo_polinico": "g",
+            "nivel_alto": 73,
+            "nivel_medio": 26,
+            "picks_presente": true,
+            "nombre_alergia": "Alternaria"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 7,
+        "fields": {
+            "nombre_comun": "Cladosporium",
+            "grupo_polinico": "g",
+            "nivel_alto": 529,
+            "nivel_medio": 173,
+            "picks_presente": true,
+            "nombre_alergia": "Cladosporium"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 8,
+        "fields": {
+            "nombre_comun": "Otras arbóreas",
+            "grupo_polinico": "a",
+            "nivel_alto": 50000000,
+            "nivel_medio": 10000000,
+            "picks_presente": true,
+            "nombre_alergia": "Otras arbóreas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 9,
+        "fields": {
+            "nombre_comun": "Otras fúngicas",
+            "grupo_polinico": "g",
+            "nivel_alto": 398,
+            "nivel_medio": 289,
+            "picks_presente": true,
+            "nombre_alergia": "Otras fúngicas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 10,
+        "fields": {
+            "nombre_comun": "Pastos y cereales",
+            "grupo_polinico": "h",
+            "nivel_alto": 28,
+            "nivel_medio": 12,
+            "picks_presente": true,
+            "nombre_alergia": "Pastos y cereales"
+        }
+    }, 
+    {
+        "model": "pollens.Polen",
+        "pk": 11,
+        "fields": {
+            "nombre_comun": "Altamisa",
+            "grupo_polinico": "h",
+            "nivel_alto": 2,
+            "nivel_medio": 1,
+            "picks_presente": true,
+            "nombre_alergia": "Malezas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 12,
+        "fields": {
+            "nombre_comun": "Artemisia",
+            "grupo_polinico": "h",
+            "nivel_alto": 25,
+            "nivel_medio": 1,
+            "picks_presente": true,
+            "nombre_alergia": "Malezas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 13,
+        "fields": {
+            "nombre_comun": "Parietaria",
+            "grupo_polinico": "h",
+            "nivel_alto": 15,
+            "nivel_medio": 1,
+            "picks_presente": true,
+            "nombre_alergia": "Malezas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 14,
+        "fields": {
+            "nombre_comun": "Chenopodiáceas",
+            "grupo_polinico": "h",
+            "nivel_alto": 25,
+            "nivel_medio": 1,
+            "picks_presente": true,
+            "nombre_alergia": "Malezas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 15,
+        "fields": {
+            "nombre_comun": "Otras hierbas",
+            "grupo_polinico": "h",
+            "nivel_alto": 50000000,
+            "nivel_medio": 10000000,
+            "picks_presente": true,
+            "nombre_alergia": "Otras hierbas"
+        }
+    },
+    {
+        "model": "pollens.Polen",
+        "pk": 16,
+        "fields": {
+            "nombre_comun": "Otras asteráceas",
+            "grupo_polinico": "h",
+            "nivel_alto": 25,
+            "nivel_medio": 10,
+            "picks_presente": false,
+            "nombre_alergia": ""
+        }
+    }
+]

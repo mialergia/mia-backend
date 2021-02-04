@@ -1,0 +1,16 @@
+*.pyc
+*.sqlite3
+*.db
+*.swp
+*.sql
+**/local_settings.py
+**/client_library.log
+**/zcrm_oauthtokens.pkl
+.vscode
+.env
+.DS_Store
+static/
+
+
+pgdata
+pdfs

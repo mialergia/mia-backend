@@ -1,0 +1,34 @@
+[  
+    {
+        "model": "pollens.GrupoPolinico",
+        "pk": "a",
+        "fields": {
+            "nombre": "arboles",
+            "unidad_medida": "granos/cm3",
+            "nivel_alto": 1,
+            "nivel_medio": 1
+        }
+    },
+    {
+        "model": "pollens.GrupoPolinico",
+        "pk": "h",
+        "fields": {
+            "nombre": "hierbas",
+            "unidad_medida": "granos/cm3",
+            "nivel_alto": 1,
+            "nivel_medio": 1
+        }
+    },
+    {
+        "model": "pollens.GrupoPolinico",
+        "pk": "g",
+        "fields": {
+            "nombre": "hongos",
+            "unidad_medida": "esporas/cm3",
+            "nivel_alto": 1,
+            "nivel_medio": 1,
+            "nivel_alto_sumatoria": 1000,
+            "nivel_medio_sumatoria": 488
+        }
+    }
+]

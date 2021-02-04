@@ -1,0 +1,34 @@
+[  
+    {
+        "model": "symptoms.TipoRespuesta",
+        "pk": 1,
+        "fields": {
+            "identificador": "frecuencia",
+            "opciones": ["si", "no", "a veces"]
+        }
+    },
+    {
+        "model": "symptoms.TipoRespuesta",
+        "pk": 2,
+        "fields": {
+            "identificador": "nivel",
+            "opciones": ["nada", "poco", "algo", "mucho"]
+        }
+    },
+    {
+        "model": "symptoms.TipoRespuesta",
+        "pk": 3,
+        "fields": {
+            "identificador": "frecuencia del dia",
+            "opciones": ["casi todo el dia", "medio dia", "algunas horas", "muy poco", "nada"]
+        }
+    },
+    {
+        "model": "symptoms.TipoRespuesta",
+        "pk": 4,
+        "fields": {
+            "identificador": "binaria",
+            "opciones": ["si", "no"]
+        }
+    }
+]

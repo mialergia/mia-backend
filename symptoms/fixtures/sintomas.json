@@ -1,0 +1,93 @@
+[  
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 1,
+        "fields": {
+            "nombre": "Tiene los ojos secos",
+            "categoria": 2
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 2,
+        "fields": {
+            "nombre": "Le quedan los ojos rojos",
+            "categoria": 2
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 3,
+        "fields": {
+            "nombre": "Tiene lagrimeo",
+            "categoria": 2
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 4,
+        "fields": {
+            "nombre": "Le pican los ojos",
+            "categoria": 2
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 5,
+        "fields": {
+            "nombre": "Usa inhalador",
+            "categoria": 3
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 6,
+        "fields": {
+            "nombre": "Diagnóstico de asma",
+            "categoria": 3
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 7,
+        "fields": {
+            "nombre": "Picazón en la nariz, garganta o paladar",
+            "categoria": 1
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 8,
+        "fields": {
+            "nombre": "Mucosidad",
+            "descripcion": "Tiene secreción nasal",
+            "categoria": 1
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 9,
+        "fields": {
+            "nombre": "Obstrucción nasal",
+            "descripcion": "Se le tapa la nariz",
+            "categoria": 1
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 10,
+        "fields": {
+            "nombre": "Estornudos",
+            "descripcion": "Se despierta y tiene varios estornudos seguidos o esporádicos",
+            "categoria": 1
+        }
+    },
+    {
+        "model": "symptoms.Sintoma",
+        "pk": 11,
+        "fields": {
+            "nombre": "Silbidos en el pecho",
+            "categoria": 3
+        }
+    }
+]

@@ -1,0 +1,16 @@
+[  
+    {
+        "model": "information.Notificacion",
+        "pk": 1,
+        "fields": {
+            "texto": "Cuando haya un nuevo reporte de pólen en el aire"
+        }
+    },
+    {
+        "model": "information.Notificacion",
+        "pk": 2,
+        "fields": {
+            "texto": "Recordarme una vez al día de ingresar mis síntomas en el diario"
+        }
+    }
+]

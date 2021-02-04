@@ -1,0 +1,26 @@
+[  
+    {
+        "model": "symptoms.CategoriaSintoma",
+        "pk": 1,
+        "fields": {
+            "identificador": "NASAL_DISCONFORT",
+            "pregunta": "¿Tuvo molestias nasales en el último año?"
+        }
+    },
+    {
+        "model": "symptoms.CategoriaSintoma",
+        "pk": 2,
+        "fields": {
+            "identificador": "EYES_DISCONFORT",
+            "pregunta": "¿Tiene molestias en los ojos?"
+        }
+    },
+    {
+        "model": "symptoms.CategoriaSintoma",
+        "pk": 3,
+        "fields": {
+            "identificador": "RECURRENT_CAUGH",
+            "pregunta": "¿Tuvo tos recurrente en el último año?"
+        }
+    }
+]
