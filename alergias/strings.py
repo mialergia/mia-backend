@@ -2,6 +2,8 @@
 passwords_should_match = 'Las contraseñas no coinciden'
 email_already_created = 'Ya existe un usuario registrado con esa dirección de correo electrónico.'
 valid_email = 'Introduzca una dirección de correo electrónico válida.'
+valid_neighboor = 'El barrio no puede ser vacío.'
+empty_field = 'Este campo es requerido.'
 
 # SYMPTOMS
 low_critical_alert = 'Te sugerimos iniciar el tratamiento recetado e ingresar tus \
