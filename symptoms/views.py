@@ -37,6 +37,11 @@ class HistorialViewSet(viewsets.ModelViewSet):
         current_user.save()
         serializer.save(usuario=current_user)
 
+    def get_queryset(self):
+        user = self.request.user
+        events = Historial.objects.filter(usuario=user)
+        return events
+
 
 class CategoriaSintomaViewSet(viewsets.ModelViewSet):
     serializer_class = CategoriaSintomaSerializer
