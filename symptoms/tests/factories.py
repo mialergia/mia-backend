@@ -33,7 +33,15 @@ class SymptomFactory(django.DjangoModelFactory):
 
 class HistoryFactory(django.DjangoModelFactory):
     usuario = factory.SubFactory(UserFactory)
-    sintomas = factory.SubFactory(SymptomFactory)
+
+    @factory.post_generation
+    def symptoms(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            for symptom in extracted:
+                self.sintomas.add(symptom)
 
     class Meta:
         model = Historial

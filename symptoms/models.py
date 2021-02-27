@@ -31,7 +31,7 @@ class Historial(models.Model):
     sintomas = models.ManyToManyField('Sintoma', blank=True)
 
     def __str__(self):
-        return self.usuario
+        return str(self.usuario)
 
 
 class TipoRespuesta(models.Model):
