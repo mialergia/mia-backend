@@ -14,6 +14,8 @@ from django.core.exceptions import ValidationError
 fake = Faker()
 fake.add_provider(geo)
 
+CRITICAL_ANSWERS = ['si', 'mucho']
+
 
 def create_serializer_class(name, fields):
     return type(name, (serializers.Serializer, ), fields)
@@ -221,10 +223,10 @@ def get_random_choices(choices, amount):
     random_choices = []
 
     i = 0
-    while (i < amount and i < len(choices) + i):
+    while (i < amount and i < len(choices)):
         i += 1
-        random_choice = random.choice(choices)
+        rest_of_choices = [choice for choice in choices if choice not in random_choices]
+        random_choice = random.choice(rest_of_choices)
         random_choices.append(random_choice)
-        choices.remove(random_choice)
 
     return random_choices

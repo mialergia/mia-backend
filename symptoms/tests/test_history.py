@@ -13,7 +13,7 @@ from symptoms.serializers import HistorialSerializer
 fake = Faker()
 
 
-class TestSymptoms(TestCase):
+class TestHistory(TestCase):
     fixtures = ['sintomas_categorias.json', 'sintomas']
 
     @classmethod
