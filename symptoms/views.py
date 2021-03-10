@@ -11,6 +11,7 @@ from .models import (
     EntradaDiario,
     CategoriaSintoma,
     Pregunta,
+    ValorRespuesta
 )
 from .serializers import (
     HistorialSerializer,
@@ -77,7 +78,7 @@ class EntradaDiarioViewSet(viewsets.ModelViewSet):
         for entry in last_week_entries:
             enrty_critical_amount = self.get_critical_answers_amount(entry)
 
-            if (enrty_critical_amount > 1):
+            if (enrty_critical_amount > 0):
                 last_week_critical_days += 1
 
         alert = None
@@ -116,6 +117,11 @@ class EntradaDiarioViewSet(viewsets.ModelViewSet):
         user = self.request.user
         events = EntradaDiario.objects.filter(usuario=user)
         return events
+
+    def perform_destroy(self, instance):
+        diary_entry_id = instance.id
+        ValorRespuesta.objects.filter(entrada_diario=diary_entry_id).delete()
+        instance.delete()
 
 
 class PreguntaViewSet(viewsets.ModelViewSet):

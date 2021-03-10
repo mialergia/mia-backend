@@ -12,7 +12,7 @@ from symptoms.serializers import CategoriaSintomaSerializer
 fake = Faker()
 
 
-class TestSymptoms(TestCase):
+class TestSymptomCategory(TestCase):
 
     @classmethod
     def setUp(self):

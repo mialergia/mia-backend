@@ -11,7 +11,7 @@ from symptoms.models import (
     EntradaDiario,
     ValorRespuesta
 )
-from alergias.utils import get_random_coordinate
+from alergias.utils import get_random_coordinate, get_random_choices
 
 
 class SymptomCategoryFactory(django.DjangoModelFactory):
@@ -47,17 +47,9 @@ class HistoryFactory(django.DjangoModelFactory):
         model = Historial
 
 
-class AnswerTypeFactory(django.DjangoModelFactory):
-    identificador = factory.Sequence(lambda n: "categoria_tipo_respuesta_id_%d" % n)
-    opciones = [Faker('text', max_nb_chars=25), Faker('text', max_nb_chars=25), Faker('text', max_nb_chars=25)]
-
-    class Meta:
-        model = TipoRespuesta
-
-
 class QuestionFactory(django.DjangoModelFactory):
-    pregunta = Faker('text', max_nb_chars=255)
-    tipo_respuesta = factory.SubFactory(AnswerTypeFactory)
+    pregunta = factory.Iterator(Pregunta.objects.all())
+    tipo_respuesta = factory.Iterator(TipoRespuesta.objects.all())
 
     class Meta:
         model = Pregunta
@@ -67,7 +59,6 @@ class DiaryEntryFactory(django.DjangoModelFactory):
     usuario = factory.SubFactory(UserFactory)
     fecha = Faker('date')
     coordenadas = get_random_coordinate()
-    preguntas = factory.SubFactory(QuestionFactory)
     comentario = Faker('text', max_nb_chars=255)
 
     class Meta:
@@ -77,7 +68,20 @@ class DiaryEntryFactory(django.DjangoModelFactory):
 class AnswerValueFactory(django.DjangoModelFactory):
     entrada_diario = factory.SubFactory(DiaryEntryFactory)
     pregunta = factory.SubFactory(QuestionFactory)
-    respuesta = Faker('text', max_nb_chars=25)
+    respuesta = factory.LazyAttribute(
+        lambda a: get_random_choices(a.pregunta.tipo_respuesta.opciones, 1)[0],
+    )
 
     class Meta:
         model = ValorRespuesta
+
+
+class DiaryEntryWithAnswerValueFactory(DiaryEntryFactory):
+    answer1 = factory.RelatedFactory(
+        AnswerValueFactory,
+        factory_related_name='entrada_diario',
+    )
+    answer2 = factory.RelatedFactory(
+        AnswerValueFactory,
+        factory_related_name='entrada_diario',
+    )
