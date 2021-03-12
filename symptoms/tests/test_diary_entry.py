@@ -4,6 +4,7 @@ from faker import Faker
 from rest_framework.test import APIClient
 from django.urls import reverse
 import json
+from datetime import timedelta, datetime
 
 from symptoms.tests.factories import DiaryEntryWithAnswerValueFactory
 from users.tests.factories import UserFactory
@@ -151,7 +152,9 @@ class TestDiaryEntry(TestCase):
         # test if create diary entry with more than four critical answers on last week
         # then high alert should be shown
 
-        def post_critical_day(date):
+        def post_critical_day(previous_days):
+            date = str((datetime.today() - timedelta(days=previous_days)).date())
+
             response = self.client_test.post(
                 self.diary_entry_url,
                 {
@@ -165,11 +168,11 @@ class TestDiaryEntry(TestCase):
 
             return response
 
-        post_critical_day('2021-02-23')
-        post_critical_day('2021-02-24')
-        post_critical_day('2021-02-26')
-        post_critical_day('2021-02-27')
-        response = post_critical_day('2021-02-28')
+        post_critical_day(7)
+        post_critical_day(6)
+        post_critical_day(5)
+        post_critical_day(4)
+        response = post_critical_day(3)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -191,9 +194,7 @@ class TestDiaryEntry(TestCase):
     def test_delete_diary_entry(self):
         DiaryEntryWithAnswerValueFactory(usuario=self.user)
         diary_entry_id = EntradaDiario.objects.first().id
-        # import pdb; pdb.set_trace()
 
         response = self.client_test.delete(f'{self.diary_entry_url}{diary_entry_id}/')
-        # print(response)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertIsNone(EntradaDiario.objects.first())
