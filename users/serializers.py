@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from rest_framework.exceptions import ValidationError
 
 from .models import User
+import alergias.strings as strings
 
 
 class CustomRegisterSerializer(RegisterSerializer):
@@ -31,6 +33,10 @@ class CustomRegisterSerializer(RegisterSerializer):
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
+    nombre = serializers.CharField(required=True)
+    departamento = serializers.CharField(required=True)
+    fecha_nacimiento = serializers.CharField(required=True)
+
     class Meta:
         model = User
         fields = (
@@ -73,3 +79,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+    def validate_departamento(self, value):
+        barrio = self.initial_data.get('barrio')
+
+        if value.lower() == 'montevideo' and not barrio:
+            raise ValidationError(strings.valid_neighboor)
+        return value

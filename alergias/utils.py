@@ -3,6 +3,7 @@ from rest_framework import exceptions as rest_exceptions
 from faker import Faker as Faker
 from faker.providers import geo
 from django.contrib.gis.geos import Point
+import random
 
 from rest_framework.views import exception_handler
 from rest_framework.settings import api_settings
@@ -12,6 +13,8 @@ from django.core.exceptions import ValidationError
 
 fake = Faker()
 fake.add_provider(geo)
+
+CRITICAL_ANSWERS = ['si', 'mucho']
 
 
 def create_serializer_class(name, fields):
@@ -214,3 +217,16 @@ def exception_errors_format_handler(exc, context):
 def get_random_coordinate():
     coordinates = fake.latlng()
     return Point(float(coordinates[1]), float(coordinates[0]))
+
+
+def get_random_choices(choices, amount):
+    random_choices = []
+
+    i = 0
+    while (i < amount and i < len(choices)):
+        i += 1
+        rest_of_choices = [choice for choice in choices if choice not in random_choices]
+        random_choice = random.choice(rest_of_choices)
+        random_choices.append(random_choice)
+
+    return random_choices
