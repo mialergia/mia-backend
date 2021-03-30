@@ -1,5 +1,5 @@
 from django.urls import path, include
-from users.views import CustomRegisterView
+from users.views import CustomRegisterView, NewEmailConfirmation
 from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
 
 urlpatterns = [
@@ -15,4 +15,9 @@ urlpatterns = [
         name='account_email_verification_sent'
     ),
     path('^', include('django.contrib.auth.urls')),
+    path(
+        'resend-verification-email/',
+        NewEmailConfirmation.as_view(),
+        name='resend-email-confirmation',
+    ),
 ]
