@@ -155,9 +155,8 @@ REST_FRAMEWORK = {
 }
 REST_USE_JWT = True
 
-# TODO: implement token refresh in the frontend
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=300),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=300),
 }
 

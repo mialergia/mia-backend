@@ -40,8 +40,8 @@ class PolenPDFViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         grupo_polinico = self.kwargs.get('group_id')
         events = Polen.objects.exclude(
-                archivo_pdf__isnull=True
-            ).exclude(
-                archivo_pdf__exact=""
-            ).filter(grupo_polinico=grupo_polinico)
+                    archivo_pdf__isnull=True
+                ).exclude(
+                    archivo_pdf__exact=""
+                ).filter(grupo_polinico=grupo_polinico)
         return events
