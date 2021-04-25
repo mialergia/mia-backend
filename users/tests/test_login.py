@@ -1,12 +1,13 @@
 from django.test import TestCase, Client, override_settings
 from rest_framework import status
 from faker import Faker
+from django.urls import reverse
 
 from users.tests.factories import UserFactory
 from users.models import User
 import alergias.strings as strings
 
-LOGIN_URL = '/api/v1/login/'
+LOGIN_URL = reverse('rest_login')
 
 
 @override_settings(ACCOUNT_EMAIL_VERIFICATION="optional")
@@ -33,6 +34,7 @@ class TestUserLogin(TestCase):
         response_data = response.data
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNotNone(str(response_data['access_token']))
+        self.assertIsNotNone(str(response_data['refresh_token']))
         self.assertEqual(response_data['user']['email'], response_db.email)
 
     def test_if_user_doesnt_exist_then_should_raise_an_error(self):
