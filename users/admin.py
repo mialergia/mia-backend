@@ -25,8 +25,7 @@ class CustomUserAdmin(UserAdmin):
                     'sexo',
                     'fecha_nacimiento',
                     'departamento',
-                    'barrio'
-                    'historial_sintomas',
+                    'barrio',
                     'email',
                     'password'
                 )
