@@ -7,6 +7,8 @@ from allauth.account.utils import send_email_confirmation
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 
 from .models import User
 
@@ -30,3 +32,14 @@ class NewEmailConfirmation(APIView):
         else:
             send_email_confirmation(request, user=user, signup=True)
             return Response({'message': 'Email de confirmación enviado'}, status=status.HTTP_201_CREATED)
+
+
+class CustomTokenRefreshView(TokenRefreshView):
+    serializer_class = TokenRefreshSerializer
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+
+        except Exception:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
