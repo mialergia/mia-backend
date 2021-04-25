@@ -12,7 +12,7 @@
         "pk": 2,
         "fields": {
             "identificador": "EYES_DISCONFORT",
-            "pregunta": "¿Tiene molestias en los ojos?"
+            "pregunta": "¿Tuvo molestias en los ojos en el último año?"
         }
     },
     {
