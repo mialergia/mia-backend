@@ -3,11 +3,10 @@ from rest_framework import status
 from faker import Faker
 from rest_framework.test import APIClient
 from django.urls import reverse
-from pollens.models import GrupoPolinico, ReporteConcentracion
 
 from users.tests.factories import UserFactory
 from pollens.tests.factories import ConcentrationReportWithPollenLevelFactory
-from pollens.models import Polen, GrupoPolinico
+from pollens.models import GrupoPolinico, ReporteConcentracion
 from pollens.serializers import ReportSerializer, ReportDetailSerializer
 from alergias.utils import get_random_choices
 
@@ -34,14 +33,14 @@ class TestSymptoms(TestCase):
         db_report = ReportSerializer(
             ReporteConcentracion.objects.all(),
             many=True,
-            context = {"current_user": self.user}
+            context={"current_user": self.user}
         ).data
         response_report = response.data
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(response_report)
         self.assertEqual(response_report, db_report)
-    
+
     def test_get_report_detail(self):
         ConcentrationReportWithPollenLevelFactory()
         pollen_group_id = get_random_choices(GrupoPolinico.objects.all(), 1)[0].id
@@ -50,7 +49,7 @@ class TestSymptoms(TestCase):
         db_report_detail = ReportDetailSerializer(
             ReporteConcentracion.objects.all(),
             many=True,
-            context = {"group_id": pollen_group_id}
+            context={"group_id": pollen_group_id}
         ).data
         response_report_detail = response.data
 
