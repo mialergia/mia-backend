@@ -1,34 +1,36 @@
 import factory
 import random
 from factory import django, Faker
+import random
 
-from pollens.models import GrupoPolinico, Polen
+from pollens.models import Polen, ReporteConcentracion, NivelesPolen
+from alergias.utils import get_random_choices
 
 
-class GrupoPolinicoFactory(django.DjangoModelFactory):
-    id = factory.Sequence(lambda n: "gp_id_%d" % n)
-    nombre = Faker('word')
-    unidad_medida = Faker('text', max_nb_chars=12)
-    nivel_alto = Faker('random_int')
-    nivel_medio = Faker('random_int')
-    nivel_alto_sumatoria = Faker('random_int')
-    nivel_medio_sumatoria = Faker('random_int')
+class ConcentrationReportFactory(django.DjangoModelFactory):
+    tiempo_extra = Faker('random_int')
+    tiempo_total = Faker('random_int')
+    porcentaje_muestreado = random.random()
 
     class Meta:
-        model = GrupoPolinico
+        model = ReporteConcentracion
 
 
-class PolenFactory(django.DjangoModelFactory):
-    tipo = Faker('word')
-    nombre_cientifico = Faker('word')
-    nombre_comun = Faker('word')
-    familia = Faker('word')
-    picks_presente = bool(random.getrandbits(1))
-    grupo_polinico = factory.SubFactory(GrupoPolinicoFactory)
-    alergenicidad = Faker('word')
-    nivel_alto = Faker('random_int')
-    nivel_medio = Faker('random_int')
-    nombre_alergia = Faker('word')
+class PollenLevel(django.DjangoModelFactory):
+    reporte = factory.SubFactory(ConcentrationReportFactory)
+    polen = get_random_choices(Polen.objects.all(), 1)[0]
+    nivel = random.uniform(0, 100)
 
     class Meta:
-        model = Polen
+        model = NivelesPolen
+
+
+class ConcentrationReportWithPollenLevelFactory(ConcentrationReportFactory):
+    pollen1 = factory.RelatedFactory(
+        PollenLevel,
+        factory_related_name='reporte',
+    )
+    pollen2 = factory.RelatedFactory(
+        PollenLevel,
+        factory_related_name='reporte',
+    )
