@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
     ),
-    'EXCEPTION_HANDLER': 'alergias.utils.exception_errors_format_handler',
+    'EXCEPTION_HANDLER': 'alergias.utils.general.exception_errors_format_handler',
 }
 REST_USE_JWT = True
 

@@ -8,7 +8,7 @@ from users.tests.factories import UserFactory
 from pollens.tests.factories import ConcentrationReportWithPollenLevelFactory
 from pollens.models import GrupoPolinico, ReporteConcentracion
 from pollens.serializers import ReportSerializer, ReportDetailSerializer
-from alergias.utils import get_random_choices
+from alergias.utils.tests import get_random_choices
 
 fake = Faker()
 

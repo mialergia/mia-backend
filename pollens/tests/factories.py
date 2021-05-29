@@ -3,7 +3,7 @@ import random
 from factory import django, Faker
 
 from pollens.models import Polen, ReporteConcentracion, NivelesPolen
-from alergias.utils import get_random_choices
+from alergias.utils.tests import get_random_choices
 
 
 class ConcentrationReportFactory(django.DjangoModelFactory):
