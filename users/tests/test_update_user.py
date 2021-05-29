@@ -7,7 +7,7 @@ import random
 from django.urls import reverse
 
 from users.tests.factories import UserFactory
-from pollens.models import Polen
+from pollens.tests.factories import PolenFactory
 from information.tests.factories import NotificacionesFactory
 from users.models import User
 import alergias.strings as strings
@@ -20,11 +20,6 @@ fake.add_provider(misc)
 
 
 class TestUserLogin(TestCase):
-    fixtures = [
-        'pollens/fixtures/grupos_polinicos.json',
-        'pollens/fixtures/polens.json',
-    ]
-
     @classmethod
     def setUpClass(self):
         super().setUpClass()
@@ -32,7 +27,7 @@ class TestUserLogin(TestCase):
         self.user = UserFactory()
         self.client_test.force_authenticate(self.user)
         self.update_user_url = reverse('rest_user_details')
-        self.pollen = list(Polen.objects.all())
+        self.pollen = PolenFactory.create_batch(10)
         self.nombre = Faker().name()
         self.sexo = random.choice(['M', 'F'])
         self.departamento = fake.word()

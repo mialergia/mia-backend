@@ -30,8 +30,6 @@ jobs:
             - "/usr/local/lib/python3.7/site-packages"
       - run:
           command: |
-            pipenv run python manage.py migrate
-            pipenv run python manage.py shell < run_fixtures.py
             pipenv run coverage run --omit=.venv/* --source="." manage.py test
             pipenv run coverage report --omit=.venv/*,manage.py --fail-under=75
       - run:
