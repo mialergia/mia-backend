@@ -9,10 +9,10 @@ from datetime import timedelta, datetime
 from symptoms.tests.factories import DiaryEntryWithAnswerValueFactory
 from users.tests.factories import UserFactory
 from symptoms.models import Pregunta, EntradaDiario
-from alergias.utils import get_random_choices
+from alergias.utils.tests import get_random_choices, test_unauthorized_call
 from symptoms.serializers import EntradaDiarioSerializer
 from alergias import strings
-from alergias.utils import CRITICAL_ANSWERS
+from alergias.utils.general import CRITICAL_ANSWERS
 
 fake = Faker()
 
@@ -43,22 +43,26 @@ class TestDiaryEntry(TestCase):
         }
         comment = fake.text(max_nb_chars=255)
 
-        response = self.client_test.post(
-            self.diary_entry_url,
-            {
-                'fecha': date,
-                'coordenadas': coordinates,
-                'comentario': comment,
-                'respuestas': self.questions,
-            },
-            format='json',
-        )
+        def call_endpoint():
+            return self.client_test.post(
+                self.diary_entry_url,
+                {
+                    'fecha': date,
+                    'coordenadas': coordinates,
+                    'comentario': comment,
+                    'respuestas': self.questions,
+                },
+                format='json',
+            )
 
+        response = call_endpoint()
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         db_diary_entry = EntradaDiarioSerializer(EntradaDiario.objects.first()).data
         response_diary_entry = response.data.get('entradas')
         self.assertEqual(response_diary_entry, db_diary_entry)
+
+        test_unauthorized_call(self, call_endpoint)
 
     def test_if_create_diary_entry_with_one_critical_answer_then_low_alert_should_be_shown(self):
         date = fake.date()
@@ -183,18 +187,28 @@ class TestDiaryEntry(TestCase):
 
     def test_get_diary_entries(self):
         DiaryEntryWithAnswerValueFactory(usuario=self.user)
-        response = self.client_test.get(self.diary_entry_url)
+
+        def call_endpoit():
+            return self.client_test.get(self.diary_entry_url)
+
+        response = call_endpoit()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         db_diary_entry = EntradaDiarioSerializer(EntradaDiario.objects.first()).data
         response_diary_entry = response.data
-
         self.assertEqual(json.dumps(response_diary_entry[0]), json.dumps(db_diary_entry))
+
+        test_unauthorized_call(self, call_endpoit, True)
 
     def test_delete_diary_entry(self):
         DiaryEntryWithAnswerValueFactory(usuario=self.user)
         diary_entry_id = EntradaDiario.objects.first().id
 
-        response = self.client_test.delete(f'{self.diary_entry_url}{diary_entry_id}/')
+        def call_endpoit():
+            return self.client_test.delete(f'{self.diary_entry_url}{diary_entry_id}/')
+
+        response = call_endpoit()
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertIsNone(EntradaDiario.objects.first())
+
+        test_unauthorized_call(self, call_endpoit)

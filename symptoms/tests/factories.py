@@ -11,7 +11,7 @@ from symptoms.models import (
     EntradaDiario,
     ValorRespuesta
 )
-from alergias.utils import get_random_coordinate, get_random_choices
+from alergias.utils.tests import get_random_coordinate, get_random_choices
 
 
 class SymptomCategoryFactory(django.DjangoModelFactory):

@@ -8,6 +8,7 @@ import random
 from symptoms.tests.factories import SymptomFactory
 from users.tests.factories import UserFactory
 from symptoms.models import Sintoma, CategoriaSintoma
+from alergias.utils.tests import test_unauthorized_call
 
 fake = Faker()
 
@@ -28,15 +29,17 @@ class TestSymptoms(TestCase):
         descripcion = fake.latlng()
         categoria = random.choice(self.categorias).id
 
-        response = self.client_test.post(
-            self.symptom_url,
-            {
-                'nombre': nombre,
-                'descripcion': descripcion,
-                'categoria': categoria,
-            }
-        )
+        def call_endpoint():
+            return self.client_test.post(
+                self.symptom_url,
+                {
+                    'nombre': nombre,
+                    'descripcion': descripcion,
+                    'categoria': categoria,
+                }
+            )
 
+        response = call_endpoint()
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         db_symptom = Sintoma.objects.first()
@@ -45,9 +48,15 @@ class TestSymptoms(TestCase):
         self.assertEqual(response_symptom['id'], db_symptom.id)
         self.assertEqual(response_symptom['nombre'], db_symptom.nombre)
 
+        test_unauthorized_call(self, call_endpoint)
+
     def test_get_symptoms(self):
         SymptomFactory.create_batch(10)
-        response = self.client_test.get(self.symptom_url)
+
+        def call_endpoint():
+            return self.client_test.get(self.symptom_url)
+
+        response = call_endpoint()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         for symptom in response.data:
@@ -55,10 +64,17 @@ class TestSymptoms(TestCase):
             self.assertEqual(symptom['nombre'], db_symptoms.nombre)
             self.assertEqual(symptom['descripcion'], db_symptoms.descripcion)
 
+        test_unauthorized_call(self, call_endpoint)
+
     def test_delete_symptom(self):
         SymptomFactory()
         symptom_id = Sintoma.objects.first().id
-        response = self.client_test.delete(f'{self.symptom_url}{symptom_id}/')
 
+        def call_endpoint():
+            return self.client_test.delete(f'{self.symptom_url}{symptom_id}/')
+
+        response = call_endpoint()
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertIsNone(Sintoma.objects.first())
+
+        test_unauthorized_call(self, call_endpoint)

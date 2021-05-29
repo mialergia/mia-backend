@@ -1,3 +1,4 @@
+from alergias.utils.tests import test_unauthorized_call
 from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
@@ -42,21 +43,23 @@ class TestUserLogin(TestCase):
         self.alergias = random.sample(self.pollen, 4)
         self.notificaciones = random.sample(NotificacionesFactory.create_batch(10), 5)
 
-    def test_if_user_is_authenticated_then_update_his_data_correctly(self):
-        response = self.client_test.put(
-            self.update_user_url,
-            {
-                'nombre': self.nombre,
-                'sexo': self.sexo,
-                'departamento': self.departamento,
-                'fecha_nacimiento': self.fecha_nacimiento,
-                'barrio': self.barrio,
-                'onesignal_player_id': self.onesignal_player_id,
-                'alergias': [alergia.id for alergia in self.alergias],
-                'notificaciones': [notificacion.id for notificacion in self.notificaciones],
-            }
-        )
+    def test_update_user(self):
+        def call_endpoint():
+            return self.client_test.put(
+                self.update_user_url,
+                {
+                    'nombre': self.nombre,
+                    'sexo': self.sexo,
+                    'departamento': self.departamento,
+                    'fecha_nacimiento': self.fecha_nacimiento,
+                    'barrio': self.barrio,
+                    'onesignal_player_id': self.onesignal_player_id,
+                    'alergias': [alergia.id for alergia in self.alergias],
+                    'notificaciones': [notificacion.id for notificacion in self.notificaciones],
+                }
+            )
 
+        response = call_endpoint()
         response_db = User.objects.first()
         response_data = response.data
 
@@ -81,6 +84,8 @@ class TestUserLogin(TestCase):
 
         for notificacion_id in notificaciones_response:
             self.assertIsNotNone(notificaciones_db.get(id=notificacion_id))
+
+        test_unauthorized_call(self, call_endpoint)
 
     def test_if_user_tries_to_update_their_data_without_name_then_error_is_shown(self):
         response = self.client_test.put(
