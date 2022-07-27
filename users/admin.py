@@ -55,9 +55,9 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(User, CustomUserAdmin)
-admin.site.unregister(Token)
-admin.site.unregister(auth.models.Group)
-admin.site.unregister(Site)
-admin.site.unregister(SocialToken)
-admin.site.unregister(SocialAccount)
-admin.site.unregister(SocialApp)
+# admin.site.unregister(Token)
+# admin.site.unregister(auth.models.Group)
+# admin.site.unregister(Site)
+# admin.site.unregister(SocialToken)
+# admin.site.unregister(SocialAccount)
+# admin.site.unregister(SocialApp)
