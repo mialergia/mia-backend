@@ -199,13 +199,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
-GOOGLE_APPLICATION_CREDENTIALS='token.json'
-
-
-
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://mail.google.com/']
-
 if env('DJANGO_DEVELOPMENT'):
     from .develop import * # noqa
 

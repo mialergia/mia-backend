@@ -92,10 +92,14 @@ def create_message_with_attachment(
     return {'raw': raw_message.decode('utf-8')}
  
 
-def sendingMessage(to, subject,message):
+def send_email_confirmation(to, url):
+    txt= "Bienvenido a MIA! \n\nEstás recibiendo este correo electrónico porque se creó una cuenta con el mail {} \n\nPara confirmar que esto es correcto, clickea desde el celular en el siguiente link: \n {} \n\nGracias!"
+    message = txt.format(to, url)
+    subject = "[MIA] Por favor confirmar dirección de correo electrónico"
     service = get_service()
     msg = create_message_with_attachment(to ,subject ,message)
     send_message(service, msg)
+    
 
 if __name__ == '__main__':
-    sendingMessage('me', 'test email', 'Que andas loquita? te hablo desde el server')
+    get_service()
