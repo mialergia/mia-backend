@@ -16,6 +16,7 @@ from .models import User
 class CustomRegisterView(RegisterView):
     queryset = User.objects.all()
 
+
 class NewEmailConfirmation(APIView):
     permission_classes = [AllowAny]
 

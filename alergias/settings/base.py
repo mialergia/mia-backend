@@ -204,4 +204,3 @@ if env('DJANGO_DEVELOPMENT'):
 
 # Local files
 MEDIA_ROOT = ''
-
