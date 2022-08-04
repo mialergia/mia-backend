@@ -25,12 +25,9 @@ class UserAdapter(DefaultAccountAdapter):
 
         return super().save_user(request, user, form, commit=commit)
     
+    # forgot password
     def send_mail(self, template_prefix, email, context):
-        print(f'////////// send_mail //////////////')
         current_site = get_current_site(request)
-        print(F'{self}')
-        print(request)
-        print(emailconfirmation)
         account_confirm_email = '/api/v1/auth/register/account-confirm-email/'
         context['activate_url'] = (
             settings.BASE_URL + account_confirm_email + context['key']
@@ -38,6 +35,7 @@ class UserAdapter(DefaultAccountAdapter):
         msg = self.render_mail(template_prefix, email, context)
         msg.send()
 
+    # sing-up
     def send_confirmation_mail(self, request, emailconfirmation, signup):
         activate_url = self.get_email_confirmation_url(request, emailconfirmation)
         send_email_confirmation(emailconfirmation.email_address.email, activate_url)
