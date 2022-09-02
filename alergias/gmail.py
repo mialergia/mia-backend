@@ -92,11 +92,11 @@ def create_message_with_attachment(
     return {'raw': raw_message.decode('utf-8')}
 
 def send_email_reset_password(to, url):
-    txt= email_confirmation['body']
-    message = txt.format(to, url)
-    subject = email_confirmation['subject']
+    txt = reset_password['body']
+    message = txt.format(url)
+    subject = reset_password['subject']
     msg = create_message_with_attachment(to ,subject ,message)
-    send_message(msg) 
+    send_message(msg)
 
 def send_email_confirmation(to, url):
     txt= email_confirmation['body']
