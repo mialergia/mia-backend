@@ -1,6 +1,11 @@
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.account.utils import user_field
-from alergias.gmail import send_email_confirmation
+from allauth.account.forms import EmailAwarePasswordResetTokenGenerator
+from allauth.account.utils import user_pk_to_url_str
+from django.urls import reverse
+
+from users.models import User
+from alergias.gmail import send_email_confirmation, send_email_reset_password, send_message, get_service
 
 
 class UserAdapter(DefaultAccountAdapter):
@@ -27,13 +32,12 @@ class UserAdapter(DefaultAccountAdapter):
     
     # forgot password
     def send_mail(self, template_prefix, email, context):
-        current_site = get_current_site(request)
-        account_confirm_email = '/api/v1/auth/register/account-confirm-email/'
-        context['activate_url'] = (
-            settings.BASE_URL + account_confirm_email + context['key']
-        )
-        msg = self.render_mail(template_prefix, email, context)
-        msg.send()
+        token_generator = EmailAwarePasswordResetTokenGenerator()
+        user = User.objects.get(email=email)
+        temp_key = token_generator.make_token(user)
+        path = reverse("account_reset_password_from_key", kwargs=dict(uidb36=user_pk_to_url_str(user), key=temp_key))
+        
+        send_email_reset_password(email, self.request.build_absolute_uri(path))
 
     # sing-up
     def send_confirmation_mail(self, request, emailconfirmation, signup):

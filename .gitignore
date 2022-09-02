@@ -9,7 +9,6 @@
 .vscode
 .env
 .DS_Store
-static/
 .coverage
 
 pgdata

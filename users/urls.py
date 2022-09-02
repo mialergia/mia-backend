@@ -15,6 +15,7 @@ urlpatterns = [
         name='account_email_verification_sent'
     ),
     path('^', include('django.contrib.auth.urls')),
+    path('', include('allauth.urls')),
     path(
         'resend-verification-email/',
         NewEmailConfirmation.as_view(),
