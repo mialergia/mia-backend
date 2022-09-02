@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 import environ
 
-from alergias.strings import email_confirmation
+from alergias.strings import email_confirmation, reset_password
 
 env = environ.Env(
     EMAIL_HOST_USER=str,
@@ -103,7 +103,6 @@ def send_email_confirmation(to, url):
     txt= email_confirmation['body']
     message = txt.format(to, url)
     subject = email_confirmation['subject']
-    service = get_service()
     msg = create_message_with_attachment(to ,subject ,message)
     send_message(msg)
     
