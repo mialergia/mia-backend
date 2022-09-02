@@ -19,3 +19,4 @@ critical_reports = {'title': 'Nuevo reporte', 'body': 'Hay un nuevo reporte de p
 
 # EMAILS
 email_confirmation = {'subject': '[MIA] Por favor confirmar dirección de correo electrónico', 'body': 'Bienvenido a MIA! \n\nEstás recibiendo este correo electrónico porque se creó una cuenta con el mail {} \n\nPara confirmar que esto es correcto, clickea desde el celular en el siguiente link: \n {} \n\nGracias!'}
+reset_password = {'subject': '[MIA] Cambiar contraseña', 'body': 'Le enviamos este email porque Ud. ha solicitado que se reestablezca la contraseña para su cuenta de usuario en MIA. \n\nPor favor visite la página que se muestra a continuación y elija una nueva contraseña: \n\n{}\n\nGracias!'}
