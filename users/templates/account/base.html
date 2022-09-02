@@ -4,17 +4,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900"
+      rel="stylesheet"
+    />
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
-    {% block body %}
+    <section class="password-reset-secction">
+      <img src="https://mialergia.fcien.edu.uy/assets/img/appIcon.png">
+      {% block body %}
 
-    {% block content %}
-    {% endblock %}
-    {% endblock %}
-    {% block extra_body %}
-    {% endblock %}
+      {% block content %}
+      {% endblock %}
+      {% endblock %}
+      {% block extra_body %}
+      {% endblock %}
+    </section>
   </body>
 </html>
