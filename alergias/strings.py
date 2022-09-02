@@ -15,3 +15,7 @@ high_critical_alert = 'Por favor, agendá una consulta con tu médico.'
 # NOTIFICATIONS
 diary_reminder = {'title': 'Recordatorio', 'body': 'No olvides agregar una nueva entrada en el diario de síntomas!'}
 critical_reports = {'title': 'Nuevo reporte', 'body': 'Hay un nuevo reporte de pólen en el aire, visitá la app para más información.'}
+
+
+# EMAILS
+email_confirmation = {'subject': '[MIA] Por favor confirmar dirección de correo electrónico', 'body': 'Bienvenido a MIA! \n\nEstás recibiendo este correo electrónico porque se creó una cuenta con el mail {} \n\nPara confirmar que esto es correcto, clickea desde el celular en el siguiente link: \n {} \n\nGracias!'}

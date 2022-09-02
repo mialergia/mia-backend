@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-import os.path
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -11,6 +7,14 @@ import base64
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
+import environ
+
+from alergias.strings import email_confirmation
+
+env = environ.Env(
+    EMAIL_HOST_USER=str,
+)
+environ.Env.read_env()
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://mail.google.com/', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid', 'https://www.googleapis.com/auth/gmail.readonly']
@@ -77,7 +81,7 @@ def create_message_with_attachment(
     ):
     message = MIMEMultipart()
     message['to'] = to
-    message['from'] = 'alergiamia@gmail.com'
+    message['from'] = env('EMAIL_HOST_USER')
     message['subject'] = subject
 
     msg = MIMEText(message_text)
@@ -89,9 +93,9 @@ def create_message_with_attachment(
  
 
 def send_email_confirmation(to, url):
-    txt= "Bienvenido a MIA! \n\nEstás recibiendo este correo electrónico porque se creó una cuenta con el mail {} \n\nPara confirmar que esto es correcto, clickea desde el celular en el siguiente link: \n {} \n\nGracias!"
+    txt= email_confirmation['body']
     message = txt.format(to, url)
-    subject = "[MIA] Por favor confirmar dirección de correo electrónico"
+    subject = email_confirmation['subject']
     service = get_service()
     msg = create_message_with_attachment(to ,subject ,message)
     send_message(service, msg)
