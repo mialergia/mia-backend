@@ -75,6 +75,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'alergias.urls'
 
+print(os.path.join(BASE_DIR, 'users/templates'))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -92,6 +94,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'users/static'),
 ]
 
 WSGI_APPLICATION = 'alergias.wsgi.application'
@@ -191,13 +197,6 @@ LOGIN_REDIRECT_URL = "mi-alergia://account-confirmed"
 LOGIN_URL = "mi-alergia://account-confirmed"
 
 SITE_ID = 1
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 if env('DJANGO_DEVELOPMENT'):
     from .develop import * # noqa
