@@ -75,8 +75,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'alergias.urls'
 
-print(os.path.join(BASE_DIR, 'users/templates'))
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
