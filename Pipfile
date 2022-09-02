@@ -27,6 +27,11 @@ importlib-metadata = "==1.7.0"
 whitenoise = "*"
 onesignal-sdk = "==1.1.0"
 apscheduler = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+"backports.weakref" = "*"
+"backports.zoneinfo" = "*"
 
 [requires]
 python_version = "3.7"
