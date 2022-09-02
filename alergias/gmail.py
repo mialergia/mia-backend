@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 import environ
 
-from alergias.strings import email_confirmation
+from alergias.strings import email_confirmation, reset_password
 
 env = environ.Env(
     EMAIL_HOST_USER=str,
@@ -61,9 +61,9 @@ def get_service():
         # TODO(developer) - Handle errors from gmail API.
         print(f'An error occurred 44: {error}')
 
-def send_message(service, message):
+def send_message(message):    
     try:
-        print(service)
+        service = get_service()
         message = service.users().messages().send(userId="me",
                 body=message).execute()
 
@@ -90,15 +90,20 @@ def create_message_with_attachment(
     raw_message = \
         base64.urlsafe_b64encode(message.as_string().encode('utf-8'))
     return {'raw': raw_message.decode('utf-8')}
- 
+
+def send_email_reset_password(to, url):
+    txt = reset_password['body']
+    message = txt.format(url)
+    subject = reset_password['subject']
+    msg = create_message_with_attachment(to ,subject ,message)
+    send_message(msg)
 
 def send_email_confirmation(to, url):
     txt= email_confirmation['body']
     message = txt.format(to, url)
     subject = email_confirmation['subject']
-    service = get_service()
     msg = create_message_with_attachment(to ,subject ,message)
-    send_message(service, msg)
+    send_message(msg)
     
 
 if __name__ == '__main__':
