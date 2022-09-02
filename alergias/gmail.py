@@ -10,7 +10,6 @@ from googleapiclient.errors import HttpError
 import base64
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import pickle
 import os
 
 # If modifying these scopes, delete the file token.json.
