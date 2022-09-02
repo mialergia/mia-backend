@@ -95,7 +95,6 @@ def send_email_reset_password(to, url):
     txt= email_confirmation['body']
     message = txt.format(to, url)
     subject = email_confirmation['subject']
-    service = get_service()
     msg = create_message_with_attachment(to ,subject ,message)
     send_message(msg) 
 
